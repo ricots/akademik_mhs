@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sp = getSharedPreferences(config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String npm = sp.getString(config.EMAIL_SHARED_PREF, "Not Available");
-        String sub_strA = npm.substring(2, 4);
+        //String sub_strA = npm.substring(2, 4);
         Toast.makeText(getApplicationContext(),npm,Toast.LENGTH_LONG).show();
 
         /*if(sub_strA.equals("57")){

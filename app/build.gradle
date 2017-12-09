@@ -8,7 +8,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-    
+
     defaultConfig {
         applicationId "com.android.akademik_mhs"
         minSdkVersion 15

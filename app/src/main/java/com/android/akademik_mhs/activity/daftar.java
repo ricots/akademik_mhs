@@ -30,6 +30,7 @@ public class daftar extends AppCompatActivity {
     Spinner input_prodi;
     Button btnregis;
     ProgressDialog PD;
+    String prodi_mhs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class daftar extends AppCompatActivity {
         input_npm = (EditText) findViewById(R.id.input_npm);
         input_pass = (EditText) findViewById(R.id.input_password);
 
-        String list[]={"pilih prodi","sistem informasi","tehnik informatika"};
+        String list[]={"pilih prodi","sistem informasi"};
         input_prodi = (Spinner) findViewById(R.id.prodi);
         ArrayAdapter<String> AdapterList = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item,list);
@@ -53,18 +54,22 @@ public class daftar extends AppCompatActivity {
         btnregis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String token = FirebaseInstanceId.getInstance().getToken();
-                regis_user(token);
+                regis_user();
             }
         });
     }
 
-    public void regis_user(final String token) {
+    public void regis_user() {
         PD.show();
         final String npm_mhs = input_npm.getText().toString();
         final String nama_mhs = input_nm.getText().toString();
-        final String prodi_mhs = input_prodi.getSelectedItem().toString();
         final String pass_mhs = input_pass.getText().toString();
+
+        if(input_prodi.getSelectedItemPosition() ==1){
+             prodi_mhs = "pr01";
+        }else if(input_prodi.getSelectedItemPosition() ==2){
+            prodi_mhs = "pr02";
+        }
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, config.REGIS,
                 new Response.Listener<String>() {
@@ -88,7 +93,6 @@ public class daftar extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(config.KEY_TOKEN,token);
                 params.put(config.KEY_NPM,npm_mhs);
                 params.put(config.KEY_NAMA,nama_mhs);
                 params.put(config.KEY_PASSWORD,pass_mhs);
