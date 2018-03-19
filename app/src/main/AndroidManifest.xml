@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.akademik_mhs">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".activity.daftar"></activity>
+        <activity android:name=".activity.daftar" />
 
         <service android:name=".firebase.MyFirebaseMessagingService">
             <intent-filter>
@@ -35,6 +35,8 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".fragment.daftar_ujian" />
+        <activity android:name=".fragment.jadwal"></activity>
     </application>
 
 </manifest>

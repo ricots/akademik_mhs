@@ -68,7 +68,7 @@ public class ContentFragment extends Fragment {
             id_kirim = "PDO0001";
         }
 
-        getData();
+        //getData();
         adp_daftar = new adapter_daftar_kuliah(datanya, getActivity());
         list_daftar.setAdapter(adp_daftar);
 
@@ -82,7 +82,8 @@ public class ContentFragment extends Fragment {
         spin_semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              //getData_semester();
+                datanya.clear();
+              getData_semester();
             }
 
             @Override
@@ -140,26 +141,27 @@ public class ContentFragment extends Fragment {
     public void getData_semester() {
         if (spin_semester.getSelectedItemPosition() == 0){
             item_spiner = "pilih semester";
+            getData();
         }else  if (spin_semester.getSelectedItemPosition() == 1){
-            item_spiner = "semester1";
+            item_spiner = "1";
         }else  if (spin_semester.getSelectedItemPosition() == 2){
-            item_spiner = "semester2";
+            item_spiner = "2";
         }else  if (spin_semester.getSelectedItemPosition() == 3){
-            item_spiner = "semester3";
+            item_spiner = "3";
         }else  if (spin_semester.getSelectedItemPosition() == 4){
-            item_spiner = "semester4";
+            item_spiner = "4";
         }else  if (spin_semester.getSelectedItemPosition() == 5){
-            item_spiner = "semester5";
+            item_spiner = "5";
         }else  if (spin_semester.getSelectedItemPosition() == 6){
-            item_spiner = "semester6";
+            item_spiner = "6";
         }else  if (spin_semester.getSelectedItemPosition() == 7){
-            item_spiner = "semester7";
+            item_spiner = "7";
         }else  if (spin_semester.getSelectedItemPosition() == 8){
-            item_spiner = "semester8";
+            item_spiner = "8";
         }
         final ProgressDialog loading = ProgressDialog.show(getActivity(),"Loading Data", "Please wait...",false,false);
-        /*Toast.makeText(getActivity(),"url " + config.KULIAH_SEMESTER  + item_spiner +
-                "&id_prodi=" + id_kirim,Toast.LENGTH_LONG).show();*/
+        Toast.makeText(getActivity(),"url " + config.KULIAH_SEMESTER  + item_spiner +
+                "&id_prodi=" + id_kirim,Toast.LENGTH_LONG).show();
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, config.KULIAH_SEMESTER  + item_spiner +
                 "&id_prodi=" + id_kirim,
                 new Response.Listener<JSONObject>() {
@@ -179,6 +181,9 @@ public class ContentFragment extends Fragment {
                                 data.setJam_mulai(json.getString(config.MULAI));
                                 data.setJam_selesai(json.getString(config.BERAKHIR));
                                 data.setDosen(json.getString(config.DOSEN));
+                                data.setNid(json.getString(config.NID));
+                                data.setHari(json.getString(config.HARI));
+                                data.setSemester(json.getString(config.SEMESTER));
                                 datanya.add(data);
                             }
 

@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.android.akademik_mhs.activity.login;
 import com.android.akademik_mhs.fragment.ContentFragment;
+import com.android.akademik_mhs.fragment.daftar_ujian;
+import com.android.akademik_mhs.fragment.jadwal;
 import com.android.akademik_mhs.koneksi.config;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().
+                    add(R.id.frame,
+                            new daftar_ujian(),
+                            daftar_ujian.class.getSimpleName()).commit();
+        }
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
@@ -69,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.inbox:
-                        Toast.makeText(getApplicationContext(),"Inbox Selected",Toast.LENGTH_SHORT).show();
                         ContentFragment fragment = new ContentFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.frame,fragment);
@@ -79,7 +86,10 @@ public class MainActivity extends AppCompatActivity {
                     // For rest of the options we just show a toast on click
 
                     case R.id.starred:
-                        Toast.makeText(getApplicationContext(),"Stared Selected",Toast.LENGTH_SHORT).show();
+                        jadwal jdwl = new jadwal();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction_jdwl = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction_jdwl.replace(R.id.frame,jdwl);
+                        fragmentTransaction_jdwl.commit();
                         return true;
 
                     case R.id.spam:
@@ -177,9 +187,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

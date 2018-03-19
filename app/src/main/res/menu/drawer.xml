@@ -12,7 +12,7 @@
         <item
             android:id="@+id/starred"
             android:checked="false"
-            android:icon="@drawable/dft"
+            android:icon="@drawable/list"
             android:title="@string/starred_string" />
 
         <item

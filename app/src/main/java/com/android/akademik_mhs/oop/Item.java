@@ -5,7 +5,62 @@ package com.android.akademik_mhs.oop;
  */
 
 public class Item {
-    String id_matkul, semester, nama_matkul,hari, jam_mulai,jam_selesai, ruang, nid,id_prodi,dosen;
+    String id_matkul;
+    String semester;
+    String nama_matkul;
+    String hari;
+    String jam_mulai;
+    String jam_selesai;
+    String ruang;
+    String nid;
+    String id_prodi;
+    String dosen;
+    String keterangan;
+    String tanggal;
+    String id_ujian;
+    String jenis_ujian;
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getId_ujian() {
+        return id_ujian;
+    }
+
+    public void setId_ujian(String id_ujian) {
+        this.id_ujian = id_ujian;
+    }
+
+    public String getJenis_ujian() {
+        return jenis_ujian;
+    }
+
+    public void setJenis_ujian(String jenis_ujian) {
+        this.jenis_ujian = jenis_ujian;
+    }
+
+    public String getTahun_ajaran() {
+        return tahun_ajaran;
+    }
+
+    public void setTahun_ajaran(String tahun_ajaran) {
+        this.tahun_ajaran = tahun_ajaran;
+    }
+
+    String tahun_ajaran;
 
     public String getDosen() {
         return dosen;
