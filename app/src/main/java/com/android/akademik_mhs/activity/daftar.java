@@ -71,37 +71,44 @@ public class daftar extends AppCompatActivity {
             prodi_mhs = "pr02";
         }
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, config.REGIS,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        PD.dismiss();
-                        Toast.makeText(getApplicationContext(),
-                                response.toString(),
-                                Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(daftar.this, login.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                PD.dismiss();
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put(config.KEY_NPM,npm_mhs);
-                params.put(config.KEY_NAMA,nama_mhs);
-                params.put(config.KEY_PASSWORD,pass_mhs);
-                params.put(config.KEY_PRODI,prodi_mhs);
-                return params;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(daftar.this);
-        requestQueue.add(postRequest);
+        if (npm_mhs.length() >=14){
+            Toast.makeText(getApplicationContext(),
+                    "harap masukkan npm dengan benar",
+                    Toast.LENGTH_SHORT).show();
+            PD.dismiss();
+        }else {
+            StringRequest postRequest = new StringRequest(Request.Method.POST, config.REGIS,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            PD.dismiss();
+                            Toast.makeText(getApplicationContext(),
+                                    response.toString(),
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(daftar.this, login.class);
+                            startActivity(intent);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    PD.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put(config.KEY_NPM, npm_mhs);
+                    params.put(config.KEY_NAMA, nama_mhs);
+                    params.put(config.KEY_PASSWORD, pass_mhs);
+                    params.put(config.ID_prodi, prodi_mhs);
+                    return params;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(daftar.this);
+            requestQueue.add(postRequest);
+        }
     }
 
     @Override

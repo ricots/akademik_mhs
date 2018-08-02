@@ -32,7 +32,7 @@ public class config {
     public static final String RUANG = "ruang";
     public static final String JAM = "jam";
     public static final String GAMBAR = "gambar";
-    public static final String ID_BRG = "id_brg";
+    public static final String ID_prodi = "id_prodi";
 
     public static final String LOGIN_SUCCESS = "success";
     public static final String SHARED_PREF_NAME = "myloginapp";
